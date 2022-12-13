@@ -1,5 +1,7 @@
 
 
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -72,7 +74,7 @@ class AppRouter {
         return onboarding ? null : '/onboarding';
       }
       
-      if( loggedIn || onboarding ) return '/${FooderlichTab.explore}';
+      if( logginIn || onboarding ) return '/${FooderlichTab.explore}';
 
       return null;
     }
