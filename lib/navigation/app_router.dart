@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import '../models/models.dart';
+import '../screens/login_screen.dart';
 
 class AppRouter {
 
@@ -22,7 +23,11 @@ class AppRouter {
     refreshListenable: appStateManager,
     initialLocation: '/login',
     routes: [
-      // TODO: Add Login Route
+      GoRoute(
+        name: 'login', // Nombre de la ruta
+        path: '/login', // Dirección (URL) de la ruta
+        builder: (context, state) => const LoginScreen(), // Página (pantalla) a mostrar
+      ),
       // TODO: Add Onboarding Route
       // TODO: Add Home Route
     ],
