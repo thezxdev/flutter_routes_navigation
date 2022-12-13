@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 
 import '../models/models.dart';
 import '../screens/login_screen.dart';
+import '../screens/screens.dart';
 
 class AppRouter {
 
@@ -28,7 +29,11 @@ class AppRouter {
         path: '/login', // Dirección (URL) de la ruta
         builder: (context, state) => const LoginScreen(), // Página (pantalla) a mostrar
       ),
-      // TODO: Add Onboarding Route
+      GoRoute(
+        name: 'onboarding',
+        path: '/onboarding',
+        builder:(context, state) => const OnboardingScreen(),
+      ),
       // TODO: Add Home Route
     ],
     // Manejar error de rutas
@@ -41,8 +46,22 @@ class AppRouter {
           ),
         )
       );
+    },
+    redirect: (state) {
+      final loggedIn = appStateManager.isLoggedIn;
+      final logginIn = state.subloc == '/login'; // subloc = path
+      if( !loggedIn ) return logginIn ? null : '/login';
+
+      final isOnboardingComplete = appStateManager.isOnboardingComplete;
+      final onboarding = state.subloc == '/onboarding';
+      if( !isOnboardingComplete ) {
+        return onboarding ? null : '/onboarding';
+      }
+      
+      if( loggedIn || onboarding ) return '/${FooderlichTab.explore}';
+
+      return null;
     }
-    // TODO: Add Redirect handler
 
   );
 
