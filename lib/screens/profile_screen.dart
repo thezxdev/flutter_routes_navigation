@@ -61,7 +61,7 @@ class ProfileScreenState extends State<ProfileScreen> {
         ListTile(
           title: const Text('Log out'),
           onTap: () {
-            // TODO: Logout user
+            Provider.of<AppStateManager>(context, listen: false).logout();
           },
         )
       ],
