@@ -46,8 +46,26 @@ class AppRouter {
             currentTab: tab,
           );
         },
+        // Subrutas
         routes: [
-          // TODO: Add Item Subroute
+          GoRoute(
+            name: 'item',
+            path: 'item/:id',
+            builder: (context, state) {
+              final itemId = state.params['id'] ?? '';
+              final item = groceryManager.getGroceryItem(itemId);
+              
+              return GroceryItemScreen(
+                originalItem: item,
+                onCreate: (item) {
+                  groceryManager.addItem(item);
+                },
+                onUpdate: (item) {
+                  groceryManager.updateItem(item);
+                },
+              );
+            },
+          ),
           // TODO: Add Profile Subroute
         ]
       )
