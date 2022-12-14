@@ -1,12 +1,8 @@
 
-
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import '../models/models.dart';
-import '../screens/login_screen.dart';
 import '../screens/screens.dart';
 
 class AppRouter {
@@ -78,7 +74,11 @@ class AppRouter {
               );
             },
             routes: [
-              // TODO: Add Webview subroute
+              GoRoute(
+                name: 'rw',
+                path: 'rw',
+                builder: (context, state) => const WebViewScreen(),
+              )
             ]
           )
         ]
